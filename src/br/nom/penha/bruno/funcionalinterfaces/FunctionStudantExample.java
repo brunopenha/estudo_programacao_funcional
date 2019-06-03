@@ -15,7 +15,7 @@ public class FunctionStudantExample {
 
        students.forEach((student -> {
 
-           if(PredicateStudantExample.p1.test(student)){
+           if(PredicateStudentExample.p1.test(student)){
                studantGradeMap.put(student.getName(), student.getGpa());
            }
 

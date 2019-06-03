@@ -6,7 +6,7 @@ import br.nom.penha.bruno.data.StudentDataBase;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class PredicateStudantExample {
+public class PredicateStudentExample {
 
     static Predicate<Student> p1 = (s) -> s.getGradeLevel() >= 3;
 
