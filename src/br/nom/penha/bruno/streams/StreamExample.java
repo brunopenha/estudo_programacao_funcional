@@ -17,9 +17,21 @@ public class StreamExample {
         Predicate<Student> studentGpaPredicate = student -> student.getGpa()>=3.9;
 
         Map<String, List<String>> studentMap = StudentDataBase.getAllStudents().stream()
+                .peek(student -> {
+                    System.out.println(student);
+                })
                 .filter(studentPredicate)    // Stream<Student>
+                .peek(student -> {
+                    System.out.println("********************* 1o. Filtro *******************");
+                    System.out.println(student);
+                    System.out.println("******************FIM 1o. Filtro *******************");
+                })
                 .filter(studentGpaPredicate) // Stream<Student>
-                .collect(Collectors.toMap(Student::getName,Student::getActivities)); // Map
+                .peek(student -> {
+                    System.out.println("********************* 2o. Filtro *******************");
+                    System.out.println(student);
+                    System.out.println("******************FIM 2o. Filtro *******************");
+                }).collect(Collectors.toMap(Student::getName,Student::getActivities)); // Map
 
 
         System.out.println(studentMap);
