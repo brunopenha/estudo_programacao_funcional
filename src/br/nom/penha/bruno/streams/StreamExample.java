@@ -17,20 +17,11 @@ public class StreamExample {
         Predicate<Student> studentGpaPredicate = student -> student.getGpa()>=3.9;
 
         Map<String, List<String>> studentMap = StudentDataBase.getAllStudents().stream()
-                .filter(studentPredicate)
-                .filter(studentGpaPredicate)
-                .collect(Collectors.toMap(
-                        Student::getName,Student::getActivities
-                ));
+                .filter(studentPredicate)    // Stream<Student>
+                .filter(studentGpaPredicate) // Stream<Student>
+                .collect(Collectors.toMap(Student::getName,Student::getActivities)); // Map
 
-        Map<String, List<String>> studentParallelMap = StudentDataBase.getAllStudents().parallelStream()
-                .filter(studentPredicate)
-                .filter(studentGpaPredicate)
-                .collect(Collectors.toMap(
-                        Student::getName,Student::getActivities
-                ));
 
         System.out.println(studentMap);
-        System.out.println(studentParallelMap);
     }
 }
