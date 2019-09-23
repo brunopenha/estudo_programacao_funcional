@@ -8,8 +8,16 @@ public class StreamsMinMaxExample {
         return listaInteiros.stream().reduce(0,(x,y) -> x>y ? x : y); // x começa com 0 (identidade) e depois é comparado com y
     }
 
+    public static int encontreValorMin(List<Integer> listaInteiros){
+        return listaInteiros.stream().reduce(0,(x,y) -> x<y ? x : y); // x começa com 0 (identidade) e depois é comparado com y
+    }
+
     public static Optional<Integer> encontreValorMaxOptinal(List<Integer> listaInteiros){
         return listaInteiros.stream().reduce((x,y) -> x>y ? x : y); // x começa com 0 (identidade) e depois é comparado com y
+    }
+
+    public static Optional<Integer> encontreValorMinOptinal(List<Integer> listaInteiros){
+        return listaInteiros.stream().reduce((x,y) -> x<y ? x : y); // x começa com 0 (identidade) e depois é comparado com y
     }
 
     public static void main(String[] args) {
@@ -36,6 +44,24 @@ public class StreamsMinMaxExample {
         }else{
             System.out.println("Valor não encontrado");
         }
+
+        System.out.println("Valor minimo: " + encontreValorMin(integerList)); // Mas zero não faz parte da lista
+
+        Optional<Integer> min =  encontreValorMinOptinal(integerList);
+        System.out.println("min: " + min);
+        if(min.isPresent()){
+            System.out.println("Valor minimo: " + min.get());
+        }else{
+            System.out.println("Sem valor");
+        }
+        min =  encontreValorMinOptinal(new ArrayList<>());
+        System.out.println("min: " + min);
+        if(min.isPresent()){
+            System.out.println("Valor minimo: " + min.get());
+        }else{
+            System.out.println("Sem valor");
+        }
+
 
     }
 }
