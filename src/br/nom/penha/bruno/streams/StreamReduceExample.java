@@ -27,9 +27,9 @@ public class StreamReduceExample {
                 // Da lista 1,3,5,7
                 // A primeira iteração irá considerar o primeiro parametro passado (que é 1) // Se for 0, o resultado final sera 0
                 // e ira colocar na variavel a, ficando:
-                // a = 1 e b = 1 (b é obtido do Stream()) -> resultado é 1
-                // a = 1 e b = 3 (do Stream()) -> resultado é 3
-                // a = 3 e b = 5 (do Stream()) -> resultado é 15
+                // a = 1 e  b = 1 (b é obtido do Stream()) -> resultado é 1
+                // a = 1 e  b = 3 (do Stream()) -> resultado é 3
+                // a = 3 e  b = 5 (do Stream()) -> resultado é 15
                 // a = 15 e b = 7 (do Stream()) -> resultado é 105
                 .reduce(1,(a,b) -> a*b);
     }

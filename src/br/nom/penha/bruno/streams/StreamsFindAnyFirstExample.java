@@ -23,7 +23,7 @@ public class StreamsFindAnyFirstExample {
 
     public static void main(String[] args) {
 
-        Optional<Student> estudante = findAnyEstudante(3.8);
+        Optional<Student> estudante = findAnyEstudante(3.9);
 
         if(estudante.isPresent()){
             System.out.println("Estudante encontrado " + estudante.get());
@@ -31,7 +31,7 @@ public class StreamsFindAnyFirstExample {
             System.out.println("Nimguem foi encontrado");
         }
 
-        estudante = findFirstEstudante(3.8);
+        estudante = findFirstEstudante(3.9);
 
         if(estudante.isPresent()){
             System.out.println("Estudante encontrado " + estudante.get());
