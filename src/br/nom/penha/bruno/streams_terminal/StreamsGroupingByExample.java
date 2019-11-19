@@ -3,10 +3,7 @@ package br.nom.penha.bruno.streams_terminal;
 import br.nom.penha.bruno.data.Student;
 import br.nom.penha.bruno.data.StudentDataBase;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamsGroupingByExample {
@@ -63,6 +60,43 @@ public class StreamsGroupingByExample {
         System.out.println("Lista com os dados de Student por Name\n " + listMap);
     }
 
+    public static void calculateTopGpaByOptional(){
+
+        Map<Integer,Optional<Student>> mapOptionalMap = StudentDataBase.getAllStudents()
+                .stream()
+                .collect(Collectors.groupingBy(Student::getGradeLevel,
+                        Collectors.maxBy(Comparator.comparing(Student::getGpa))));
+
+        System.out.println(mapOptionalMap);
+
+    }
+
+    public static void calculateTopGpaByStudent(){
+
+        Map<Integer,Student> mapOptionalMap = StudentDataBase.getAllStudents()
+                .stream()
+                .collect(Collectors.groupingBy(Student::getGradeLevel,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparing(Student::getGpa)),
+                                Optional::get)));
+
+        System.out.println(mapOptionalMap);
+
+    }
+
+    public static void calculateLeastGpaByStudent(){
+
+        Map<Integer,Student> mapOptionalMap = StudentDataBase.getAllStudents()
+                .stream()
+                .collect(Collectors.groupingBy(Student::getGradeLevel,
+                        Collectors.collectingAndThen(
+                                Collectors.minBy(Comparator.comparing(Student::getGpa)),
+                                Optional::get)));
+
+        System.out.println(mapOptionalMap);
+
+    }
+
     public static void main(String[] args) {
 
         System.out.println("*************************");
@@ -77,6 +111,12 @@ public class StreamsGroupingByExample {
         customizedgroupStudentsByNameAndSumOfNotebooks();
         System.out.println("*************************");
         customizedgroupStudentsByNameAndLinkedHashMap();
+        System.out.println("*************************");
+        calculateTopGpaByOptional();
+        System.out.println("*************************");
+        calculateTopGpaByStudent();
+        System.out.println("*************************");
+        calculateLeastGpaByStudent();
         System.out.println("*************************");
     }
 }
