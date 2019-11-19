@@ -3,8 +3,10 @@ package br.nom.penha.bruno.streams_terminal;
 import br.nom.penha.bruno.data.Student;
 import br.nom.penha.bruno.data.StudentDataBase;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class StreamsGroupingByExample {
@@ -49,7 +51,16 @@ public class StreamsGroupingByExample {
                 .collect(Collectors.groupingBy(Student::getName,
                         Collectors.summingInt(Student::getNotebooks)));
 
-        System.out.println("Lista com o total de notebooks por Grade Level\n " + listMap);
+        System.out.println("Lista com o total de notebooks por Nome\n " + listMap);
+    }
+
+    public static void customizedgroupStudentsByNameAndLinkedHashMap(){ //three level grouping
+        LinkedHashMap<String,Set<Student>> listMap = StudentDataBase.getAllStudents()
+                .stream()
+                .collect(Collectors.groupingBy(Student::getName,
+                         LinkedHashMap::new,Collectors.toSet()));
+
+        System.out.println("Lista com os dados de Student por Name\n " + listMap);
     }
 
     public static void main(String[] args) {
@@ -64,6 +75,8 @@ public class StreamsGroupingByExample {
         customizedgroupStudentsByGradeLevelAndSumOfNotebooks();
         System.out.println("*************************");
         customizedgroupStudentsByNameAndSumOfNotebooks();
+        System.out.println("*************************");
+        customizedgroupStudentsByNameAndLinkedHashMap();
         System.out.println("*************************");
     }
 }
