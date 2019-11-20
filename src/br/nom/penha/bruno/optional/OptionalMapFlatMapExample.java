@@ -1,5 +1,6 @@
 package br.nom.penha.bruno.optional;
 
+import br.nom.penha.bruno.data.Bike;
 import br.nom.penha.bruno.data.Student;
 import br.nom.penha.bruno.data.StudentDataBase;
 
@@ -28,12 +29,29 @@ public class OptionalMapFlatMapExample {
         }
     }
 
+    // flatmap
+    public static void optionalFlatMap(){
+        Optional<Student> optionalStudent = Optional.ofNullable(StudentDataBase.studentSupplier.get());
+
+        Optional<String> name = optionalStudent
+                .filter(student -> student.getGpa() >= 3.5) // Optional<Student <Optional<Bike>>
+                .flatMap(Student::getBike) // return -> Optional<Bike>
+                .map(Bike::getName);
+
+        if(name.isPresent()){
+            System.out.println(name.get());
+        }
+
+
+    }
+
 
     public static void main(String[] args) {
 
         System.out.println("*************");
         opitionalFilter();
         optionalMap();
+        optionalFlatMap();
 
     }
 }
