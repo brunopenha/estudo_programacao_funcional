@@ -13,14 +13,6 @@ public class Student {
     private int notebooks;
     private Optional<Bike> bike = Optional.empty();
 
-    public Optional<Bike> getBike() {
-        return bike;
-    }
-
-    public void setBike(Optional<Bike> bike) {
-        this.bike = bike;
-    }
-
     public Student(String name, int gradeLevel, double gpa, String gender, List<String> activities, int notebooks) {
         this.name = name;
         this.gradeLevel = gradeLevel;
@@ -88,6 +80,14 @@ public class Student {
 
     public void setNotebooks(int notebooks) {
         this.notebooks = notebooks;
+    }
+
+    public Optional<Bike> getBike() {
+        return bike;
+    }
+
+    public void setBike(Optional<Bike> bike) {
+        this.bike = bike;
     }
 
     @Override
